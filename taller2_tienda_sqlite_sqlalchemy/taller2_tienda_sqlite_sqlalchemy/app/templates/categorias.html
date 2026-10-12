@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block titulo %}Categorías | TecnoTienda{% endblock %}
+{% block contenido %}
+<section class="introduccion">
+  <p class="etiqueta">ORGANIZACIÓN</p>
+  <h1>Categorías</h1>
+  <p>Selecciona una categoría para ver sus productos.</p>
+</section>
+<section class="categorias">
+{% for categoria in categorias %}
+  <article class="categoria-card">
+    <h2>{{ categoria.nombre }}</h2>
+    <p>{{ categoria.productos|length }} producto(s) registrados</p>
+    <a class="boton" href="{{ url_for('main.index', categoria=categoria.id) }}">Ver productos</a>
+  </article>
+{% else %}
+  <p>Aún no hay categorías. Ejecuta el comando para cargar los datos.</p>
+{% endfor %}
+</section>
+{% endblock %}

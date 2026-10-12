@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block titulo %}{{ producto.nombre }} | TecnoTienda{% endblock %}
+{% block contenido %}
+<a class="volver" href="{{ url_for('main.index') }}">← Volver al catálogo</a>
+<article class="detalle">
+  {% if producto.foto %}<img src="{{ url_for('static', filename=producto.foto) }}" alt="{{ producto.nombre }}">{% endif %}
+  <div>
+    <p class="etiqueta">DETALLE DEL PRODUCTO</p>
+    <p class="marca">{{ producto.marca }}</p>
+    <h1>{{ producto.nombre }}</h1>
+    <p class="sku">Código: {{ producto.sku }}</p>
+    <p>Categoría: <strong>{{ producto.categoria.nombre }}</strong></p>
+    <p class="precio precio-grande">${{ "{:,.0f}".format(producto.precio).replace(",", ".") }} COP</p>
+    {% if producto.disponible %}
+      <p class="estado disponible">Disponible · {{ producto.stock }} unidades en stock</p>
+    {% else %}
+      <p class="estado agotado">{% if producto.stock == 0 %}Agotado{% else %}Producto no disponible{% endif %}</p>
+    {% endif %}
+    <a class="boton" href="{{ url_for('main.index') }}">Seguir viendo productos</a>
+  </div>
+</article>
+{% endblock %}

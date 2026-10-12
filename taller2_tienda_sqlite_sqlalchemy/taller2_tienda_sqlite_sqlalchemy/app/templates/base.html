@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block titulo %}TecnoTienda{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="encabezado">
+  <a class="logo" href="{{ url_for('main.index') }}">TecnoTienda</a>
+  <nav><a href="{{ url_for('main.index') }}">Productos</a><a href="{{ url_for('main.categorias') }}">Categorías</a></nav>
+</header>
+<main class="contenedor">{% block contenido %}{% endblock %}</main>
+<footer class="pie">TecnoTienda · Taller Flask, SQLite y SQLAlchemy</footer>
+</body>
+</html>
